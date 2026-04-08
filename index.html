@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>VIKRANT SAINI</title>
+
+<style>
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: black;
+  color: white;
+  font-family: Algerian ;
+}
+
+section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  text-align: center;
+}
+.glow-btn {
+  padding: 15px 40px;
+  font-size: 20px;
+  color: #00ffff;
+  background: transparent;
+  border: 2px solid #00ffff;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+}
+
+.glow-btn:hover {
+  background: #00ffff;
+  color: black;
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 80px #00ffff;
+}
+canvas {
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+</style>
+</head>
+
+<body>
+
+<H4><section>HOW ARE YOU TODAY </section>
+<section>THANKS FOR VIST MY WORLD</section>
+<section>LETS START NOW BRO </section>
+</H4>
+<div>
+  <h6><a href="main.html">Home</a>
+            <a href="service.html">Services</a>
+            <a href="contact.html">Contact</a>
+     </h6>    </div>
+<section>
+  <div>
+   
+<button class="glow-btn" onclick="startNow()">LET'S START</button>
+  </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+<script>
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// MAIN SHAPE
+const geometry = new THREE.TorusKnotGeometry(1, 0.3, 100, 16);
+const material = new THREE.MeshBasicMaterial({ color: 0x00ffffff, wireframe: true });
+const shape = new THREE.Mesh(geometry, material);
+scene.add(shape);
+
+// PARTICLES
+const particlesGeometry = new THREE.BufferGeometry();
+const particlesCount = 500;
+
+const posArray = new Float32Array(particlesCount * 3);
+
+for(let i=0; i<particlesCount*3; i++) {
+  posArray[i] = (Math.random() - 0.5) * 10;
+}
+
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+const particlesMaterial = new THREE.PointsMaterial({
+  size: 0.02,
+  color: 0x00ffffff
+});
+
+const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+scene.add(particlesMesh);
+
+camera.position.z = 5;
+
+// SCROLL EFFECT
+window.addEventListener('scroll', () => {
+  shape.rotation.x = window.scrollY * 0.002;
+  shape.rotation.y = window.scrollY * 0.002;
+});
+
+// ANIMATION LOOP
+function animate() {
+  requestAnimationFrame(animate);
+
+  shape.rotation.x += 0.005;
+  shape.rotation.y += 0.005;
+
+  particlesMesh.rotation.y += 0.001;
+
+  // COLOR CHANGE EFFECT
+  const time = Date.now() * 0.00022;
+  material.color.setHSL(Math.sin(time), 1, 0.6);
+
+  renderer.render(scene, camera);
+}
+
+animate();
+function startNow() {
+  document.body.style.opacity = "0";
+  setTimeout(() => {
+    window.location.href = "home.html";
+  }, 500);
+
+}
+// RESPONSIVE
+window.addEventListener('resize', () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+});
+</script>
+
+</body>
+</html>

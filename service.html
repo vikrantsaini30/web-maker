@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services - Vikrant Files</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+
+body{
+    background: radial-gradient(circle at top, #020024, #000);
+    color:#fff;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #ffffff;
+    box-shadow:0 0 10px #ffffff;
+}
+nav{
+    position:fixed;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    padding:20px 40px;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    z-index:1000;
+}
+nav h2{color:#ffffff}
+nav a{color:#fff;margin:0 10px;text-decoration:none}
+nav a:hover{color:#00ffc3}
+
+.hero{
+    height:60vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+.hero h1{
+    font-size:50px;
+    background:linear-gradient(45deg,#00ffc3,#00aaff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+.hero p{color:#aaa;margin-top:10px}
+
+.section{padding:80px 20px;text-align:center}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    padding:25px;
+    margin:15px;
+    width:280px;
+    border-radius:20px;
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 25px #00ffc3;
+}
+
+.card h3{margin-bottom:10px;color:#00ffc3}
+.card p{font-size:14px;color:#ccc}
+
+.price{
+    margin-top:10px;
+    color:#00ffc3;
+    font-weight:bold;
+}
+
+.cta{
+    margin-top:40px;
+}
+
+.cta button{
+    padding:15px 30px;
+    border:none;
+    border-radius:30px;
+    background:#00ffc3;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
+
+.cta button:hover{transform:scale(1.1)}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#000;
+    margin-top:50px;
+}
+
+/* background slider */
+.bg-slider{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
+.bg-slider img{
+    position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;
+    animation:slide 15s infinite;
+}
+.bg-slider img:nth-child(1){animation-delay:0s}
+.bg-slider img:nth-child(2){animation-delay:5s}
+.bg-slider img:nth-child(3){animation-delay:10s}
+
+@keyframes slide{
+0%{opacity:0}
+10%{opacity:1}
+30%{opacity:1}
+40%{opacity:0}
+100%{opacity:0}
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div class="bg-slider">
+    <img src="pick2.jpg">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+<img src="pick3.png"> 
+</div>
+
+
+<nav>
+   <div class="logo">
+    <img src="pick.jpeg" alt="profile">
+    <h2>DEVLOPER SAINI</h2>
+</div>
+    <div>
+         <a href="main.html">Home</a>
+        <a href="service.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>OUR SERVICES ⚡</h1>
+    <p>Premium Website & Backend Solutions for Your Business</p>
+</section>
+<section class="section">
+    <div class="cards">
+
+        <div class="card">
+            <h3>🌐 Website Development</h3>
+            <p>Modern responsive websites with premium UI, fast speed and mobile friendly design.</p>
+            <div class="price">Starting ₹999</div>
+        </div>
+
+        <div class="card">
+            <h3>👤 Personal Portfolio</h3>
+            <p>Create your own portfolio to showcase your skills, gaming profile and achievements.</p>
+            <div class="price">Starting ₹499</div>
+        </div>
+
+        <div class="card">
+            <h3>🏢 Business Website</h3>
+            <p>Professional websites for shops, agencies and services with contact & lead system.</p>
+            <div class="price">Starting ₹1999</div>
+        </div>
+
+        <div class="card">
+            <h3>⚙️ Backend System</h3>
+            <p>Node.js backend, file upload system, admin panel and database integration.</p>
+            <div class="price">Custom Pricing</div>
+        </div>
+
+    </div>
+
+    <div class="cta">
+        <button onclick="contact()">Contact Now</button>
+    </div>
+</section>
+
+<footer>
+    © 2026 Vikrant Saini | All Rights Reserved
+</footer>
+
+<script>
+function contact(){
+    alert('Contact on WhatsApp: 9991583497');
+}
+</script>
+
+</body>
+</html>
