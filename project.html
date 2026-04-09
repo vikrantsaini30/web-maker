@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>VIKRANT 3D</title>
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  background:black;
+  font-family:Poppins;
+  color:white;
+}
+
+/* TEXT UI */
+.overlay{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  z-index:10;
+}
+
+.overlay h1{
+  font-size:60px;
+  background:linear-gradient(45deg,#ffffff,#00aaff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.overlay p{
+  color:#ffffff;
+  margin-top:10px;
+}
+
+.btn{
+  margin-top:20px;
+  padding:15px 30px;
+  border:none;
+  border-radius:30px;
+  background:#ffffff;
+  cursor:pointer;
+  box-shadow:0 0 20px #ffffff;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 40px #3d635b;
+}
+
+canvas{
+  position:fixed;
+  top:0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+  <h1>VIKRANT SAINI ⚡</h1>
+  <p>3D Web Developer | Next Level UI</p>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+<script>
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(innerWidth,innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// 🌙 GLOW SPHERE (moon effect)
+const geometry = new THREE.SphereGeometry(1.5,32,32);
+const material = new THREE.MeshBasicMaterial({
+  color:0x00ffff,
+  wireframe:true
+});
+const sphere = new THREE.Mesh(geometry,material);
+scene.add(sphere);
+
+// ✨ STARS
+const starGeo = new THREE.BufferGeometry();
+const starCount = 1000;
+
+const pos = new Float32Array(starCount*3);
+
+for(let i=0;i<starCount*3;i++){
+  pos[i] = (Math.random()-0.5)*50;
+}
+
+starGeo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+
+const starMat = new THREE.PointsMaterial({
+  size:0.05,
+  color:0xffffff
+});
+
+const stars = new THREE.Points(starGeo,starMat);
+scene.add(stars);
+
+camera.position.z = 5;
+
+// ANIMATE
+function animate(){
+  requestAnimationFrame(animate);
+
+  sphere.rotation.x += 0.01;
+  sphere.rotation.y += 0.01;
+
+  stars.rotation.y += 0.0005;
+
+  renderer.render(scene,camera);
+}
+animate();
+
+// BUTTON
+function startNow(){
+  window.location.href="main.html";
+}
+
+// RESPONSIVE
+window.addEventListener('resize',()=>{
+  renderer.setSize(innerWidth,innerHeight);
+  camera.aspect=innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+});
+</script>
+
+</body>
+</html>
